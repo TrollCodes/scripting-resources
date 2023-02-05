@@ -10,7 +10,7 @@ function rotate(X,Y,Z)
 end
 
 function Join(Hat,Part,Offset,Rotation,Mesh)
-	if Mesh == false then Hat.Handle.Mesh:Destroy() end
+	if Mesh == false then Hat.Handle:FindFirstChildWhichIsA("SpecialMesh"):Destroy() end
 	Hat.Handle.AccessoryWeld:Destroy()
 	local method = Instance.new("RopeConstraint",player.Character)
 	method.Length = math.huge
