@@ -1,5 +1,3 @@
-wait(2)
-
 Player = game.Players.LocalPlayer
 OldChar = Player.Character
 
