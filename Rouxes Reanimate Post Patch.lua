@@ -157,6 +157,8 @@ for i,v in pairs(NewChar:GetDescendants()) do
 	end
 end
 
+vbreak = false
+
 OldChar.Torso["Left Shoulder"]:Destroy()
 OldChar.Torso["Right Shoulder"]:Destroy()
 OldChar.Torso["Left Hip"]:Destroy()
@@ -170,6 +172,7 @@ OldChar.Animate.Disabled = true
 
 RunService = game:GetService("RunService")
 RunService.Stepped:Connect(function()
+    if vbreak == true then return end
 	OldChar.Torso.CanCollide = false
 	OldChar.Head.CanCollide = false
 end)
@@ -187,5 +190,13 @@ coroutine.wrap(function()
 		OldChar["Right Arm"].CFrame = NewChar["Right Arm"].CFrame
 		OldChar["Left Leg"].CFrame = NewChar["Left Leg"].CFrame
 		OldChar["Right Leg"].CFrame = NewChar["Right Leg"].CFrame
+
+        	if NewChar.Humanoid.Health == 0 then
+          	  Player.Character = OldChar
+        	    OldChar.Head:Destroy()
+        	    vbreak = true
+        	    break
+      	  	end
+
 	end
 end)()
